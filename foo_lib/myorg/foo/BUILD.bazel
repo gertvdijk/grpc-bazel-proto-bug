@@ -1,0 +1,28 @@
+load(
+    "@com_github_grpc_grpc//bazel:python_rules.bzl",
+    "py_grpc_library",
+    "py_proto_library",
+)
+
+proto_library(
+    name = "hello_proto",
+    srcs = ["hello.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+py_proto_library(
+    name = "hello_py_proto_library",
+    visibility = ["//visibility:public"],
+    deps = [":hello_proto"],
+)
+
+py_grpc_library(
+    name = "hello_py_grpc_library",
+    srcs = [":hello_proto"],
+    visibility = ["//visibility:public"],
+    deps = [":hello_py_proto_library"],
+)

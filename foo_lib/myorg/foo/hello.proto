@@ -1,0 +1,28 @@
+// Inspired by https://github.com/grpc/grpc/blob/3ab278292f3c78782c41c8fa529a7ce42e0aef7e/bazel/test/python_test_repo/helloworld.proto
+// (APACHE licensed)
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "myorg.foo";
+option java_outer_classname = "HelloProto";
+option go_package = "proto/myorg/foo/hello";
+
+package myorg.foo;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message HelloRequest {
+    string name = 1;
+    google.protobuf.Timestamp request_initiation = 2;
+}
+
+message HelloReply {
+    string message = 1;
+    google.protobuf.Duration request_duration = 2;
+}
+
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}

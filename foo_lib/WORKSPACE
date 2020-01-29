@@ -1,0 +1,24 @@
+workspace(name = "myorg_foo_lib")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+grpc_version = "1.26.0"
+
+http_archive(
+    name = "com_github_grpc_grpc",
+    sha256 = "b90b2328e8546065578cc7a2b354ba50461365e162d8745e539045b1ca040963",
+    strip_prefix = "grpc-%s" % grpc_version,
+    urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % grpc_version],
+)
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+
+grpc_extra_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_python_deps.bzl", "grpc_python_deps")
+
+grpc_python_deps()

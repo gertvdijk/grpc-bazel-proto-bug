@@ -1,0 +1,5 @@
+py_binary(
+    name = "foo_app",
+    srcs = ["myorg/foo/foo_app.py"],
+    deps = ["@myorg_foo_lib//myorg/foo:hello_py_grpc_library"],
+)
