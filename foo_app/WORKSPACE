@@ -5,15 +5,15 @@ local_repository(
     path = "../foo_lib",
 )
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-grpc_version = "1.26.0"
+grpc_version = "b94490bc74a2efc7274af70f276eb4c14c226d6f"
 
-http_archive(
+git_repository(
     name = "com_github_grpc_grpc",
-    sha256 = "b90b2328e8546065578cc7a2b354ba50461365e162d8745e539045b1ca040963",
-    strip_prefix = "grpc-%s" % grpc_version,
-    urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % grpc_version],
+    commit = grpc_version,
+    remote = "https://github.com/grpc/grpc.git",
+    shallow_since = "1580334702 -0800",
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
