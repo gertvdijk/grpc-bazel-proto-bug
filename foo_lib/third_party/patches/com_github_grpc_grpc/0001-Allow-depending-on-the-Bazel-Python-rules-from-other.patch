@@ -1,4 +1,4 @@
-From a6f6c4559f995dd979972b451dd7799f207288e0 Mon Sep 17 00:00:00 2001
+From 54f20a58615872407d7ca07a4abefa5b226af905 Mon Sep 17 00:00:00 2001
 From: Gert van Dijk <gert.vandijk@tulipsolutions.nl>
 Date: Thu, 30 Jan 2020 15:37:34 +0100
 Subject: [PATCH] Allow depending on the Bazel Python rules from other
@@ -10,7 +10,7 @@ Fixes: https://github.com/grpc/grpc/issues/21830
  1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git bazel/protobuf.bzl bazel/protobuf.bzl
-index 7af27a8b30..743b25a5c0 100644
+index 7af27a8b30..a1ad170796 100644
 --- bazel/protobuf.bzl
 +++ bazel/protobuf.bzl
 @@ -219,16 +219,16 @@ def get_out_dir(protos, context):
@@ -32,7 +32,7 @@ index 7af27a8b30..743b25a5c0 100644
 +        import_path = out_dir[out_dir.find(_VIRTUAL_IMPORTS) + 1:]
 +    else:
 +        out_dir = "/".join([context.genfiles_dir.path, ws_root])
-+    return struct(path = out_dir, import_path = None)
++    return struct(path = out_dir, import_path = import_path)
  
  def is_in_virtual_imports(source_file, virtual_folder = _VIRTUAL_IMPORTS):
      """Determines if source_file is virtual (is placed in _virtual_imports
