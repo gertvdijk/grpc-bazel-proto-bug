@@ -6,6 +6,7 @@ grpc_version = "1.26.0"
 
 http_archive(
     name = "com_github_grpc_grpc",
+    patches = ["//third_party/patches/com_github_grpc_grpc:0001-Allow-depending-on-the-Bazel-Python-rules-from-other.patch"],
     sha256 = "b90b2328e8546065578cc7a2b354ba50461365e162d8745e539045b1ca040963",
     strip_prefix = "grpc-%s" % grpc_version,
     urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % grpc_version],

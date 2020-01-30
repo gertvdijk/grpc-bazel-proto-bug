@@ -1,5 +1,7 @@
 # Demo bug with gRPC's `bazel/python_rules.bzl` dependencies cross-workspace
 
+THIS IS THE BRANCH WITH THE PROPOSED FIX AS PATCH APPLIED IN `WORKSPACE`.
+
 In this minimal example, I use of Google's `grpc.io`'s Bazel rules for Python for the purpose of demonstrating
 [a bug][bug] when these targets are used in another workspace.
 
